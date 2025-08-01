@@ -1,0 +1,1 @@
+LANG, NAME, PHONE, CITY = range(4)
