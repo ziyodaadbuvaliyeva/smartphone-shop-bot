@@ -45,10 +45,45 @@ def get_main_menu_keyboard(language: str) -> ReplyKeyboardMarkup:
 def get_gadget_keyboard(language: str) -> ReplyKeyboardMarkup:
     if language == "O'zbekcha":
         inline_keyboard = [
-            [InlineKeyboardButton("Telefon", callback_data="gadget:1")],
-            [InlineKeyboardButton("Planshet", callback_data="gadget:2")],
-            [InlineKeyboardButton("Smart Soat", callback_data="gadget:3")],
-            [InlineKeyboardButton("Quloqchinlar", callback_data="gadget:4")],
+            [InlineKeyboardButton("Telefon", callback_data="telefon")],
+            [InlineKeyboardButton("Planshet", callback_data="plansher")],
+            [InlineKeyboardButton("Smart Soat", callback_data="smart_soat")],
+            [InlineKeyboardButton("Quloqchinlar", callback_data="quloqchinlar")],
+        ]
+    else:
+        inline_keyboard = [
+            [InlineKeyboardButton("Выберите тип 1", callback_data="gadget:1")],
+            [InlineKeyboardButton("Выберите тип 2", callback_data="gadget:2")],
+            [InlineKeyboardButton("Выберите тип 3", callback_data="gadget:3")],
+            [InlineKeyboardButton("Выберите тип 4", callback_data="gadget:4")],
+        ]
+    
+    return InlineKeyboardMarkup(inline_keyboard)
+
+def get_telefon_keyboard(language: str) -> ReplyKeyboardMarkup:
+    if language == "O'zbekcha":
+        inline_keyboard = [
+            [InlineKeyboardButton("Apple", callback_data="apple_telefon")],
+            [InlineKeyboardButton("Samsung", callback_data="samsung_telefon")],
+            [InlineKeyboardButton("Redmi Xiaomi", callback_data="redmi_telefon")],
+        ]
+    else:
+        inline_keyboard = [
+            [InlineKeyboardButton("Выберите тип 1", callback_data="gadget:1")],
+            [InlineKeyboardButton("Выберите тип 2", callback_data="gadget:2")],
+            [InlineKeyboardButton("Выберите тип 3", callback_data="gadget:3")],
+            [InlineKeyboardButton("Выберите тип 4", callback_data="gadget:4")],
+        ]
+    
+    return InlineKeyboardMarkup(inline_keyboard)
+
+def get_apple_telefon_keyboard(language: str) -> ReplyKeyboardMarkup:
+    if language == "O'zbekcha":
+        inline_keyboard = [
+            [InlineKeyboardButton("iPhone X", callback_data="apple_telefon_x")],
+            [InlineKeyboardButton("iPhone 11", callback_data="apple_telefon_11")],
+            [InlineKeyboardButton("iPhone 12", callback_data="apple_telefon_12")],
+            [InlineKeyboardButton("iPhone 13", callback_data="apple_telefon_13")],
         ]
     else:
         inline_keyboard = [
