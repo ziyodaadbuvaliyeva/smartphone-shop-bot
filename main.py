@@ -1,5 +1,8 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler
-from bot.handlers import start, set_language, set_name, set_phone, set_city, cancel, main_menu
+from bot.handlers import (
+    start, set_language, set_name, set_phone, set_city, cancel, main_menu,
+    send_gadgets, 
+)
 from bot.states import LANG, NAME, PHONE, CITY
 from bot.config import TOKEN
 
@@ -22,6 +25,7 @@ def main():
     dp.add_handler(conv_handler)
 
     # Menu handler (after registration)
+    dp.add_handler(MessageHandler(Filters.text(["Gadget turini tanlang", "Выберите тип гаджета"]), send_gadgets))
     dp.add_handler(MessageHandler(Filters.text & ~Filters.command, main_menu))
 
     updater.start_polling()
