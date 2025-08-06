@@ -93,3 +93,45 @@ def send_apple_telefon(update: Update, context: CallbackContext) -> None:
             chat_id=update.effective_chat.id,
             text="Telefonlar",
         )
+
+
+def send_samsung_telefonlar(update: Update, context: CallbackContext) -> None:
+    user_data = user_db.get_user(str(update.effective_user.id))
+
+    if 'language' not in user_data:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Iltimos, avval tilni tanlang.")
+        return
+
+    language = user_data['language']
+    
+    phones = smartphone_db.get_samsung_phones()  
+    for phone in phones:
+        caption = (f"{phone['model']}\nNarxi: {phone['price']}\nRangi: {phone['color']}"
+                   if language == "O'zbekcha" else
+                   f"{phone['model']}\nЦена: {phone['price']}\nЦвет: {phone['color']}")
+        context.bot.send_photo(
+            chat_id=update.effective_chat.id,
+            photo=phone['image_url'],
+            caption=caption
+        )
+
+
+def send_redmi_telefonlar(update: Update, context: CallbackContext) -> None:
+    user_data = user_db.get_user(str(update.effective_user.id))
+
+    if 'language' not in user_data:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Iltimos, avval tilni tanlang.")
+        return
+
+    language = user_data['language']
+    
+    phones = smartphone_db.get_redmi_phones()  
+    for phone in phones:
+        caption = (f"{phone['model']}\nNarxi: {phone['price']}\nRangi: {phone['color']}"
+                   if language == "O'zbekcha" else
+                   f"{phone['model']}\nЦена: {phone['price']}\nЦвет: {phone['color']}")
+        context.bot.send_photo(
+            chat_id=update.effective_chat.id,
+            photo=phone['image_url'],
+            caption=caption
+        )

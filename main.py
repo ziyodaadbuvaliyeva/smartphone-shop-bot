@@ -4,7 +4,8 @@ from telegram.ext import (
 )
 from bot.handlers import (
     start, set_language, set_name, set_phone, set_city, cancel, main_menu,
-    send_gadgets, send_telefonlar, send_apple_telefonlar, send_apple_telefon
+    send_gadgets, send_telefonlar, send_apple_telefonlar, send_apple_telefon,
+    send_samsung_telefonlar, send_redmi_telefonlar  
 )
 from bot.states import LANG, NAME, PHONE, CITY
 from bot.config import TOKEN
@@ -27,7 +28,7 @@ def main():
 
     dp.add_handler(conv_handler)
 
-    # Menu handler (after registration)
+    
     dp.add_handler(MessageHandler(Filters.text(["Gadget turini tanlang", "Выберите тип гаджета"]), send_gadgets))
     dp.add_handler(MessageHandler(Filters.text & ~Filters.command, main_menu))
 
@@ -35,8 +36,13 @@ def main():
     dp.add_handler(CallbackQueryHandler(send_apple_telefon, pattern='apple_telefon_x'))
     dp.add_handler(CallbackQueryHandler(send_apple_telefonlar, pattern='apple_telefon'))
 
+    
+    dp.add_handler(CallbackQueryHandler(send_samsung_telefonlar, pattern='samsung_telefon'))
+    dp.add_handler(CallbackQueryHandler(send_redmi_telefonlar, pattern='redmi_telefon'))
+
     updater.start_polling()
     updater.idle()
+
 
 if __name__ == "__main__":
     main()

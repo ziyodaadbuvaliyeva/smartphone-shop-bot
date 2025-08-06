@@ -94,3 +94,35 @@ def get_apple_telefon_keyboard(language: str) -> ReplyKeyboardMarkup:
         ]
     
     return InlineKeyboardMarkup(inline_keyboard)
+
+
+def get_samsung_telefon_keyboard(language: str) -> InlineKeyboardMarkup:
+    if language == "O'zbekcha":
+        inline_keyboard = [
+            [InlineKeyboardButton("Samsung Galaxy S21", callback_data="samsung_s21")],
+            [InlineKeyboardButton("Samsung Galaxy Note 20", callback_data="samsung_note20")],
+            [InlineKeyboardButton("Samsung Galaxy A52", callback_data="samsung_a52")],
+        ]
+    else:  
+        inline_keyboard = [
+            [InlineKeyboardButton("Самсунг Гэлакси S21", callback_data="samsung_s21")],
+            [InlineKeyboardButton("Самсунг Гэлакси Нот 20", callback_data="samsung_note20")],
+            [InlineKeyboardButton("Самсунг Гэлакси А52", callback_data="samsung_a52")],
+        ]
+    return InlineKeyboardMarkup(inline_keyboard)
+
+
+def get_redmi_telefon_keyboard(language: str) -> InlineKeyboardMarkup:
+    if language == "O'zbekcha":
+        inline_keyboard = [
+            [InlineKeyboardButton("Redmi Note 10", callback_data="redmi_note10")],
+            [InlineKeyboardButton("Redmi Note 11", callback_data="redmi_note11")],
+            [InlineKeyboardButton("Redmi 9C", callback_data="redmi_9c")],
+        ]
+    else:  
+        inline_keyboard = [
+            [InlineKeyboardButton("Редми Нот 10", callback_data="redmi_note10")],
+            [InlineKeyboardButton("Редми Нот 11", callback_data="redmi_note11")],
+            [InlineKeyboardButton("Редми 9C", callback_data="redmi_9c")],
+        ]
+    return InlineKeyboardMarkup(inline_keyboard)
