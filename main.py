@@ -15,6 +15,7 @@ def main():
     updater = Updater(TOKEN, use_context=True)
     dp = updater.dispatcher
 
+    
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("start", start)],
         states={
@@ -23,20 +24,22 @@ def main():
             PHONE: [MessageHandler(Filters.contact, set_phone)],
             CITY: [MessageHandler(Filters.text & ~Filters.command, set_city)],
         },
-        fallbacks=[CommandHandler("cancel", cancel)]
+        fallbacks=[CommandHandler("cancel", cancel)],
+        allow_reentry=True  
     )
 
     dp.add_handler(conv_handler)
 
     
     dp.add_handler(MessageHandler(Filters.text(["Gadget turini tanlang", "Выберите тип гаджета"]), send_gadgets))
+
+    
     dp.add_handler(MessageHandler(Filters.text & ~Filters.command, main_menu))
 
+    
     dp.add_handler(CallbackQueryHandler(send_telefonlar, pattern='telefon'))
     dp.add_handler(CallbackQueryHandler(send_apple_telefon, pattern='apple_telefon_x'))
     dp.add_handler(CallbackQueryHandler(send_apple_telefonlar, pattern='apple_telefon'))
-
-    
     dp.add_handler(CallbackQueryHandler(send_samsung_telefonlar, pattern='samsung_telefon'))
     dp.add_handler(CallbackQueryHandler(send_redmi_telefonlar, pattern='redmi_telefon'))
 
